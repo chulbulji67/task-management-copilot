@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,8 @@ public class Task {
 
     private String assignee;
 
+    private String assigneeEmail;
+
     private String creator;
 
     private LocalDateTime dueDate;
@@ -47,6 +50,9 @@ public class Task {
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Comment> comments;
+
+    @ManyToMany
+    private List<Label> labels = new ArrayList<>();
 
 
 }

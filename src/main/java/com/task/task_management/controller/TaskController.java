@@ -5,7 +5,9 @@ import com.task.task_management.entity.Comment;
 import com.task.task_management.entity.Task;
 import com.task.task_management.enums.TaskPriority;
 import com.task.task_management.enums.TaskStatus;
+import com.task.task_management.service.DueDateReminderService;
 import com.task.task_management.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,11 @@ import java.util.List;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
+
     private final TaskService taskService;
+
+    @Autowired
+    private DueDateReminderService reminderService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -37,8 +43,8 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody Task updatedTask) {
-        return ResponseEntity.ok(taskService.updateTask(id, updatedTask));
+    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody Task updatedTaskPriority) {
+        return ResponseEntity.ok(taskService.updateTask(id, updatedTaskPriority));
     }
 
     @DeleteMapping("/{id}")
@@ -62,6 +68,13 @@ public class TaskController {
             @RequestParam(required = false) TaskStatus status,
             @RequestParam(required = false) TaskPriority priority) {
         return ResponseEntity.ok(taskService.getTasksByStatusAndPriority(status, priority));
+    }
+
+    //For checking that due date reminder is going on email
+    @GetMapping("/task-reminder")
+    public String testReminder() {
+        reminderService.sendDueDateReminders();
+        return "Reminder job executed";
     }
 }
 
