@@ -50,7 +50,7 @@ public class TaskService {
 
     public Task getTaskById(String id) {
         return taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found"));
+                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
     }
 
 //    public Task updateTask(String id, Task updatedTask) {
