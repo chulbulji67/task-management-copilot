@@ -135,8 +135,8 @@ Ensure your SMTP configuration is correct to test email notifications for:
 Steps to Import Postman Collection from GitHub
 Download the Postman Collection from GitHub
 
-Navigate to the repository on GitHub where the postman_collection.json file is located.
-Click on the file postman_collection.json to open it.
+Navigate to the repository on GitHub where the Task-Management-Copilot.postman_collection.json file is located.
+Click on the file Task-Management-Copilot.postman_collection.json to open it.
 Click the "Download" button or right-click on the "Raw" button and select Save link as... to download the file to your local system.
 Open Postman
 
@@ -146,7 +146,7 @@ Import the Collection into Postman
 
 In Postman, go to the File menu at the top left and select Import.
 A dialog will appear. Choose Upload Files.
-Select the postman_collection.json file you downloaded from GitHub and click Open.
+Select the Task-Management-Copilot.postman_collection.json file you downloaded from GitHub and click Open.
 Use the Collection
 
 The Postman collection will now appear in the Collections tab in Postman.
