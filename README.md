@@ -132,6 +132,28 @@ Ensure your SMTP configuration is correct to test email notifications for:
 
 ---
 
+Steps to Import Postman Collection from GitHub
+Download the Postman Collection from GitHub
+
+Navigate to the repository on GitHub where the postman_collection.json file is located.
+Click on the file postman_collection.json to open it.
+Click the "Download" button or right-click on the "Raw" button and select Save link as... to download the file to your local system.
+Open Postman
+
+If you don't have Postman installed, you can download it from Postman’s official website.
+Once installed, open the Postman app.
+Import the Collection into Postman
+
+In Postman, go to the File menu at the top left and select Import.
+A dialog will appear. Choose Upload Files.
+Select the postman_collection.json file you downloaded from GitHub and click Open.
+Use the Collection
+
+The Postman collection will now appear in the Collections tab in Postman.
+Click on the collection to expand and view all the requests defined in the collection.
+You can now use these requests to test your API by adjusting the necessary parameters (e.g., task ID, labels) and sending requests to your local server.
+
+
 ## **Additional Notes**
 1. Ensure the application runs on `http://localhost:8080`.
 2. Use Postman to import the collection and test the APIs interactively.
