@@ -1,12 +1,14 @@
 package com.task.task_management.controller;
 
 
+import com.task.task_management.dto.OutputTask;
 import com.task.task_management.entity.Comment;
 import com.task.task_management.entity.Task;
 import com.task.task_management.enums.TaskPriority;
 import com.task.task_management.enums.TaskStatus;
 import com.task.task_management.service.DueDateReminderService;
 import com.task.task_management.service.TaskService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
+@CrossOrigin
+@Slf4j
 public class TaskController {
 
 
@@ -29,11 +33,12 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        log.info("Post Method called");
         return ResponseEntity.ok(taskService.createTask(task));
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
+    public ResponseEntity<OutputTask> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 

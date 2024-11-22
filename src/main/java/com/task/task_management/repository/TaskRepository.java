@@ -16,8 +16,9 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, String> {
     List<Task> findByStatus(TaskStatus status);
-    List<Task> findByStatusAndPriority(TaskStatus status, TaskPriority priority);
-
+//    List<Task> findByStatusAndPriority(TaskStatus status, TaskPriority priority);
+@Query("SELECT t FROM Task t WHERE (:status IS NULL OR t.status = :status) AND (:priority IS NULL OR t.priority = :priority)")
+List<Task> findByStatusAndPriority(@Param("status") TaskStatus status, @Param("priority") TaskPriority priority);
     List<Task> findTasksByDueDateBefore(LocalDateTime dueDate);
 
     @Query("SELECT t FROM Task t WHERE t.dueDate >= :start AND t.dueDate <= :end")
@@ -27,4 +28,5 @@ public interface TaskRepository extends JpaRepository<Task, String> {
     List<Task> findByLabelsIn(@Param("labels") List<Label> labels);
 
 
+    List<Task> findByPriority(TaskPriority priority);
 }

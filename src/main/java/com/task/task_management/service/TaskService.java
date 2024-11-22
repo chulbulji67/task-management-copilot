@@ -1,11 +1,13 @@
 package com.task.task_management.service;
 
+import com.task.task_management.dto.OutputTask;
 import com.task.task_management.dto.TaskPriorityChangeEvent;
 import com.task.task_management.entity.Comment;
 import com.task.task_management.entity.Label;
 import com.task.task_management.entity.Task;
 import com.task.task_management.enums.TaskPriority;
 import com.task.task_management.exception.LabelNotFoundException;
+import com.task.task_management.exception.TaskExistException;
 import com.task.task_management.exception.TaskNotFoundException;
 import com.task.task_management.repository.CommentRepository;
 import com.task.task_management.repository.LabelRepository;
@@ -38,14 +40,21 @@ public class TaskService {
     public Task createTask(Task task) {
         task.setCreatedAt(LocalDateTime.now());
         task.setUpdatedAt(LocalDateTime.now());
+        if (taskRepository.existsById(task.getId())) {
+            throw new TaskExistException("A task with ID " + task.getId() + " already exists.");
+        }
         for(Label label: task.getLabels()){
             labelRepository.save(label);
         }
         return taskRepository.save(task);
     }
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public OutputTask getAllTasks() {
+        List<Task> tasks= taskRepository.findAll();
+        OutputTask outputTask = new OutputTask();
+        outputTask.setTasks(tasks);
+        outputTask.setTotal(tasks.size());
+        return outputTask;
     }
 
     public Task getTaskById(String id) {
@@ -99,8 +108,22 @@ public class TaskService {
         return taskRepository.findByStatus(status);
     }
 
+//    public List<Task> getTasksByStatusAndPriority(TaskStatus status, TaskPriority priority) {
+//        return taskRepository.findByStatusAndPriority(status, priority);
+//    }
+
     public List<Task> getTasksByStatusAndPriority(TaskStatus status, TaskPriority priority) {
-        return taskRepository.findByStatusAndPriority(status, priority);
+        System.out.println("Status is "+status+" "+priority);
+        if (status != null && priority != null) {
+
+            return taskRepository.findByStatusAndPriority(status, priority);
+        } else if (status != null) {
+            return taskRepository.findByStatus(status);
+        } else if (priority != null) {
+            return taskRepository.findByPriority(priority);
+        } else {
+            return taskRepository.findAll();
+        }
     }
 
     public Task addLabelToTask(String taskId, String labelName) {

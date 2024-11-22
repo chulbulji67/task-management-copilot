@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": \"task123\",\n    \"title\": \"Fix Login Bug\",\n    \"description\": \"Users unable to login using SSO\",\n    \"priority\": \"HIGH\",\n    \"dueDate\": \"2024-03-20T00:00:00\",\n    \"assignee\": \"john.doe\",\n    \"creator\": \"current-user\",\n    \"status\": \"TODO\"\n}\n",
+					"raw": "{\n    \"id\": \"task123567\",\n    \"title\": \"Fix Login Bug\",\n    \"description\": \"Users unable to login using SSOsfsf fs\",\n    \"priority\": \"LOW\",\n    \"dueDate\": \"2024-03-20T00:00:00\",\n    \"assignee\": \"john.doe\",\n    \"assigneeEmail\":\"chulbulji67@gmail.com\",\n    \"creator\": \"admin\",\n    \"status\": \"TODO\",\n    \"labels\": [\"Bug\", \"UI\"]\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/tasks/task1235",
+					"raw": "http://localhost:8080/api/tasks/task12356",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -70,7 +70,7 @@
 					"path": [
 						"api",
 						"tasks",
-						"task1235"
+						"task12356"
 					]
 				}
 			},
@@ -83,7 +83,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Fix Login Bug\",\n    \"description\": \"Resolve login issues for SSO users\",\n    \"priority\": \"HIGH\",\n    \"dueDate\": \"2024-03-22T00:00:00\",\n    \"assignee\": \"john.doe\",\n    \"status\": \"IN_PROGRESS\"\n}",
+					"raw": "{\n    \"title\": \"Fix Login Bug\",\n    \"description\": \"Resolve login issues for SSO users\",\n    \"priority\": \"HIGH\",\n    \"dueDate\": \"2024-03-20T00:00:00\",\n    \"assignee\": \"john.doe\",\n    \"status\": \"DONE\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,7 +91,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks/task123",
+					"raw": "http://localhost:8080/api/tasks/task12356",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -100,7 +100,7 @@
 					"path": [
 						"api",
 						"tasks",
-						"task123"
+						"task12356"
 					]
 				}
 			},
@@ -142,7 +142,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/tasks/task123/comments",
+					"raw": "http://localhost:8080/api/tasks/task123566/comments",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -151,7 +151,7 @@
 					"path": [
 						"api",
 						"tasks",
-						"task123",
+						"task123566",
 						"comments"
 					]
 				}
@@ -162,7 +162,99 @@
 			"name": "Search-task",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/search?status=IN_PROGRESS&priority=HIGH",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"search"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "IN_PROGRESS"
+						},
+						{
+							"key": "priority",
+							"value": "HIGH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/test-email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"test-email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task Reminder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/task-reminder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"task-reminder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TAsk by label",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tasks/labels/search?labels=UI,Bug",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"labels",
+						"search"
+					],
+					"query": [
+						{
+							"key": "labels",
+							"value": "UI,Bug"
+						}
+					]
+				}
 			},
 			"response": []
 		}

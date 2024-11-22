@@ -17,12 +17,24 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<String> handleException(Exception ex) {
+//        ex.printStackTrace(); // Logs the error stack trace
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+//    }
+
     /**
      * Handle LabelNotFoundException.
      */
     @ExceptionHandler(LabelNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleLabelNotFoundException(LabelNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse("Label Not Found", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(TaskExistException.class)
+    public ResponseEntity<ErrorResponse> handleLabelAlreadyExistException(TaskExistException ex) {
+        ErrorResponse errorResponse = new ErrorResponse("Id Already Exists", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
