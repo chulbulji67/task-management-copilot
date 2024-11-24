@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks/labels")
+@CrossOrigin
 public class TaskLabelController {
 
     @Autowired
