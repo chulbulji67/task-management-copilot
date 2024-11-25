@@ -2,6 +2,7 @@ package com.task.task_management.controller;
 
 import com.task.task_management.entity.Task;
 import com.task.task_management.service.TaskLabelService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class TaskLabelController {
      * Retrieve tasks by labels.
      */
     @GetMapping("/search")
-    public ResponseEntity<List<Task>> getTasksByLabels(@RequestParam List<String> labels) {
+    public ResponseEntity<List<Task>> getTasksByLabels(@RequestParam @Valid List<String> labels) {
         List<Task> tasks = taskLabelService.getTasksByLabels(labels);
         return ResponseEntity.ok(tasks);
     }
@@ -30,8 +31,7 @@ public class TaskLabelController {
      */
     @PutMapping("/{id}/labels")
     public ResponseEntity<Task> updateTaskLabels(
-            @PathVariable String id,
-            @RequestBody List<String> labelNames) {
+            @PathVariable String id, @RequestBody List<String> labelNames) {
         Task updatedTask = taskLabelService.updateTaskLabels(id, labelNames);
         return ResponseEntity.ok(updatedTask);
     }

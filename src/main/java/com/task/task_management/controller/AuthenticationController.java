@@ -3,6 +3,7 @@ package com.task.task_management.controller;
 
 
 import com.task.task_management.dto.User;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +23,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<String> authenticate(@RequestBody User user) {
+    public ResponseEntity<String> authenticate(@RequestBody @Valid User user) {
         try {
             // Manually authenticate the user
             Authentication authentication = authenticationManager.authenticate(

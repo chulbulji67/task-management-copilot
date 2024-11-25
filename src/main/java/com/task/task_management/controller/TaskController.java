@@ -8,6 +8,7 @@ import com.task.task_management.enums.TaskPriority;
 import com.task.task_management.enums.TaskStatus;
 import com.task.task_management.service.DueDateReminderService;
 import com.task.task_management.service.TaskService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+    public ResponseEntity<Task> createTask(@RequestBody @Valid Task task) {
         log.info("Post Method called");
         return ResponseEntity.ok(taskService.createTask(task));
     }
@@ -43,23 +44,23 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable String id) {
+    public ResponseEntity<Task> getTaskById(@PathVariable  String id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody Task updatedTaskPriority) {
+    public ResponseEntity<Task> updateTask(@PathVariable String id, @RequestBody  Task updatedTaskPriority) {
         return ResponseEntity.ok(taskService.updateTask(id, updatedTaskPriority));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable String id) {
+    public ResponseEntity<Void> deleteTask(@PathVariable  String id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{id}/comments")
-    public ResponseEntity<Comment> addComment(@PathVariable String id, @RequestBody Comment comment) {
+    public ResponseEntity<Comment> addComment(@PathVariable  String id, @RequestBody  Comment comment) {
         return ResponseEntity.ok(taskService.addComment(id, comment));
     }
 

@@ -35,6 +35,7 @@ public class Comment {
     @Size(max = 100, message = "Comment cannot exceed 100 characters")
     private String text;
 
+    @NotBlank(message = "author  is required")
     private String author;
 
     private LocalDateTime createdAt;
